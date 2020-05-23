@@ -13,8 +13,8 @@ from datetime import datetime
 url1 = 'https://raw.githubusercontent.com/imdevskp/covid-19-india-data/master/complete.csv'
 url2 = 'https://raw.githubusercontent.com/imdevskp/covid-19-india-data/master/nation_level_daily.csv'
 
-image = Image.open("C:/Project/corona.png")
-st.image(image, width=700)
+#image = Image.open("https://img.etimg.com/thumb/msid-74665367,width-643,imgsize-980841,resizemode-4/from-the-trumpet-shaped-protrusion-at-the-centre-of-a-daffodil-or-narcissus-to-a-part-of-a-cornice-with-a-vertical-face-to-the-most-popular-shape-of-chandeliers-corona-has-long-been-an-acceptable-part-of-society-.jpg")
+#st.image(image)
 st.header(' COVID-19 Tracker for India ')
 
 @st.cache(persist=True)
