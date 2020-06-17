@@ -33,7 +33,7 @@ def load_data():
 @st.cache(persist=True)
 def load_cdata():
     cdata = pd.read_csv(url2)
-    data.rename(columns={'Date':'date'}, inplace=True)
+    #data.rename(columns={'Date':'date'}, inplace=True)
     cdata.rename(columns={'Daily Deceased':'dailydeceased'}, inplace=True)
     cdata.rename(columns={'Daily Confirmed':'dailyconfirmed'}, inplace=True)
     cdata.rename(columns={'Daily Recovered':'dailyrecovered'}, inplace=True)
@@ -73,7 +73,7 @@ if d <= dd:
 
     #domain_pd = pd.to_datetime(['2020-03-10', date.today()], format='%m%d').astype(int) / 10 ** 6
     basic_chart1 = alt.Chart(cdata).mark_bar(size=4).encode(
-            alt.X('date', title='Date', timeUnit='monthdate'#, scale=alt.Scale(domain=list(domain_pd))
+            alt.X('Date', title='Date', timeUnit='monthdate'#, scale=alt.Scale(domain=list(domain_pd))
         ),
         alt.Y('dailydeceased', title='No.of Deaths'),
         tooltip=[ 'dailydeceased']).interactive().properties( width=700, height=300).configure_axis(labelFontSize=7)
@@ -103,7 +103,7 @@ if d <= dd:
 
     #domain_pd1 = pd.to_datetime(['2020-01-30', date.today()]).astype(int) / 10 ** 6
     basic_chart2 = alt.Chart(cdata).mark_bar(size=4).encode(
-        alt.X('date', timeUnit='monthdate', title='Date'#, scale=alt.Scale(domain=list(domain_pd))
+        alt.X('Date', timeUnit='monthdate', title='Date'#, scale=alt.Scale(domain=list(domain_pd))
         ),
         alt.Y('dailyconfirmed', title='No.of Positive/Confirmed cases'),
         tooltip=[ 'dailyconfirmed']).interactive().properties( width=700, height=300).configure_axis(labelFontSize=7)
@@ -133,7 +133,7 @@ if d <= dd:
 
     #domain_pd2 = pd.to_datetime(['2020-03-01', date.today()]).astype(int) / 10 ** 6
     basic_chart3 = alt.Chart(cdata).mark_bar(size=4).encode(
-        alt.X('date', timeUnit='monthdate', title='Date',#, scale=alt.Scale(domain=list(domain_pd))
+        alt.X('Date', timeUnit='monthdate', title='Date',#, scale=alt.Scale(domain=list(domain_pd))
         ),
         alt.Y('dailyrecovered', title='No.of Recovered cases'),
         tooltip=[ 'dailyrecovered']).interactive().properties( width=700, height=300).configure_axis(labelFontSize=7)
