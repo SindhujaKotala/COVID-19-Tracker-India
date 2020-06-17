@@ -33,6 +33,10 @@ def load_data():
 @st.cache(persist=True)
 def load_cdata():
     cdata = pd.read_csv(url2)
+    data.rename(columns={'Date':'date'}, inplace=True)
+    data.rename(columns={'Daily Confirmed':'daily_confirmed'}, inplace=True)
+    data.rename(columns={'Daily Recovered':'daily_recovered'}, inplace=True)
+    data.rename(columns={'Daily Deceased':'daily_deceased'}, inplace=True)
     return cdata
 
 data = load_data()
@@ -71,8 +75,8 @@ if d <= dd:
     basic_chart1 = alt.Chart(cdata).mark_bar(size=4).encode(
             alt.X('date', title='Date', timeUnit='monthdate'#, scale=alt.Scale(domain=list(domain_pd))
         ),
-        alt.Y('dailydeceased', title='No.of Deaths'),
-        tooltip=[ 'dailydeceased']).interactive().properties( width=700, height=300).configure_axis(labelFontSize=7)
+        alt.Y('daily_deceased', title='No.of Deaths'),
+        tooltip=[ 'daily_deceased']).interactive().properties( width=700, height=300).configure_axis(labelFontSize=7)
     st.altair_chart(basic_chart1)
 
 
@@ -101,8 +105,8 @@ if d <= dd:
     basic_chart2 = alt.Chart(cdata).mark_bar(size=4).encode(
         alt.X('date', timeUnit='monthdate', title='Date'#, scale=alt.Scale(domain=list(domain_pd))
         ),
-        alt.Y('dailyconfirmed', title='No.of Positive/Confirmed cases'),
-        tooltip=[ 'dailyconfirmed']).interactive().properties( width=700, height=300).configure_axis(labelFontSize=7)
+        alt.Y('daily_confirmed', title='No.of Positive/Confirmed cases'),
+        tooltip=[ 'daily_confirmed']).interactive().properties( width=700, height=300).configure_axis(labelFontSize=7)
     st.altair_chart(basic_chart2)
 
 
@@ -131,8 +135,8 @@ if d <= dd:
     basic_chart3 = alt.Chart(cdata).mark_bar(size=4).encode(
         alt.X('date', timeUnit='monthdate', title='Date',#, scale=alt.Scale(domain=list(domain_pd))
         ),
-        alt.Y('dailyrecovered', title='No.of Recovered cases'),
-        tooltip=[ 'dailyrecovered']).interactive().properties( width=700, height=300).configure_axis(labelFontSize=7)
+        alt.Y('daily_recovered', title='No.of Recovered cases'),
+        tooltip=[ 'daily_recovered']).interactive().properties( width=700, height=300).configure_axis(labelFontSize=7)
 
     st.altair_chart(basic_chart3)
 
